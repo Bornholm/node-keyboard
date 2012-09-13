@@ -29,8 +29,8 @@ Events
 	}
 
 
-Require
--------
+Dependencies
+------------
 
 ref - https://github.com/TooTallNate/ref
 	
