@@ -78,7 +78,6 @@ function parse(input, buffer) {
     };
 
     event.keyId = findKeyID(event.keyCode);
-    debugger;
     event.type = EVENT_TYPES[ buffer.readUInt32LE(20) ];
 
   }
