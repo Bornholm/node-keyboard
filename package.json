@@ -1,0 +1,23 @@
+{
+  "name": "node-keyboard",
+  "version": "0.0.0",
+  "description": "node-keyboard =============",
+  "main": "keyboard.js",
+  "dependencies": {
+    "ref": "~0.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bornholm/node-keyboard"
+  },
+  "author": "Bornholm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bornholm/node-keyboard/issues"
+  },
+  "homepage": "https://github.com/Bornholm/node-keyboard"
+}
