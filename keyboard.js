@@ -59,6 +59,21 @@ Keyboard.prototype.close = function(callback) {
   this.fd = undefined;
 };
 
+Keyboard.prototype.Lines = function(callback) {
+  var line = [];
+  var endLine = function () {
+    callback(toLine(line));
+    line = [];
+  }
+  this.on('keypress', function(data){
+    if(!data || !data['key']) return;
+    if (data['key']['code']==28)
+      return endLine();
+    else
+      line.push(data);
+  });
+};
+
 
 /**
  * Parse Input data
@@ -73,10 +88,9 @@ function parse(input, buffer) {
     event = {
       timeS: buffer.readUInt32LE(0) + buffer.readUInt32LE(4),
       timeMS: buffer.readUInt32LE(8) + buffer.readUInt32LE(12),
-      keyCode: buffer.readUInt16LE(18)
     };
-
-    event.key = findKeyID(event.keyCode);
+    var keyCode = buffer.readUInt16LE(18)
+    event.key = findKeyID(keyCode);
     event.type = EVENT_TYPES[ buffer.readUInt32LE(20) ];
 
   }
@@ -96,10 +110,29 @@ function findKeyID( keyCode ) {
   for( key in Keyboard.Keys ) {
     if ( Keyboard.Keys.hasOwnProperty(key) ) {
       if( Keyboard.Keys[key]['code'] === keyCode ) {
+        Keyboard.Keys[key]['key'] = key;
         return Keyboard.Keys[key];
       }
     }
   }
+}
+
+function toLine(events){
+  var res = '',shift = 0;
+  for(var e in events){
+    if(events[e]['key']['key'] == 'KEY_LEFTSHIFT' || events[e]['key']['key'] == 'KEY_RIGHTSHIFT') shift = 1;
+    else{
+      if(shift && events[e]['key']['s_ascii']){
+        res += events[e]['key']['s_ascii'];
+        shift = 0;
+      }
+      else if(events[e]['key']['ascii']) {
+        res += events[e]['key']['ascii'];
+        shift = 0;
+      }
+    }
+  }
+  return res;
 }
 
 module.exports = Keyboard;

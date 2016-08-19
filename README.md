@@ -27,14 +27,24 @@ k.on('keypress', console.log);
 k.on('error', console.error);
 ```
 
+See demo2.js
+
+```javascript
+var Keyboard = require('./keyboard.js');
+
+var k = new Keyboard('event2'); // 'event2' is the file corresponding to my keyboard in /dev/input/
+k.Lines(function(data){
+    console.log(data);
+});
+```
+
 Events
 
 ```javascript
 { 
   timeS: 1347572085, // Timestamp ( Seconds part )
   timeMS: 741381, // Timestamp ( Microseconds part )
-  keyCode: 17, // Keyboard code
-  key: { code: 31, ascii: 's', s_ascii: 'S' }, // Key Info /!\ Qwerty layout !
+  key: key: { code: 30, ascii: 'a', s_ascii: 'A', key: 'KEY_A' }, // Key Info /!\ Qwerty layout !
   type: 'keypress', // Event type
   dev: 'event2'  // Device
 }
