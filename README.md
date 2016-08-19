@@ -9,7 +9,7 @@ Install
 -------
 
 ```
-npm install git+https://github.com/Bornholm/node-keyboard.git
+npm install
 ```
 
 Usage
@@ -34,7 +34,7 @@ Events
   timeS: 1347572085, // Timestamp ( Seconds part )
   timeMS: 741381, // Timestamp ( Microseconds part )
   keyCode: 17, // Keyboard code
-  keyId: 'KEY_W', // Key ID /!\ Qwerty layout !
+  key: { code: 31, ascii: 's', s_ascii: 'S' }, // Key Info /!\ Qwerty layout !
   type: 'keypress', // Event type
   dev: 'event2'  // Device
 }
