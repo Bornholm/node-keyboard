@@ -269,7 +269,7 @@ Keys["KEY_LEFTALT"] = {
 };
 Keys["KEY_SPACE"] = {
     code: 57,
-    ascii: 32
+    ascii: ' '
 };
 Keys["KEY_CAPSLOCK"] = {
     code: 58
